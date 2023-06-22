@@ -3,7 +3,7 @@ import Favorite from "../FavoriteButton/FavoriteButton";
 import { Container } from "../Spotlight";
 import { useRouter } from "next/router";
 
-export default function Detail({ picture }) {
+export default function Detail({ picture, onToggleFavorite, isFavorite }) {
   const router = useRouter();
   return (
     <Container>
@@ -18,7 +18,7 @@ export default function Detail({ picture }) {
         height={500}
       ></Image>
       <p>{picture.genre}</p>
-      <Favorite />
+      <Favorite isFavorite={isFavorite} onToggleFavorite={onToggleFavorite} />
       <button onClick={() => router.push("/artpieces")}>Back</button>
     </Container>
   );

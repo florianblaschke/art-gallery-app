@@ -3,7 +3,7 @@ import Favorite from "../FavoriteButton/FavoriteButton";
 import Link from "next/link";
 import { Container } from "../Spotlight";
 
-export default function Art({ picture }) {
+export default function Art({ picture, onToggleFavorite, isFavorite }) {
   return (
     <>
       <Container>
@@ -20,7 +20,7 @@ export default function Art({ picture }) {
           ></Image>
           <p>{picture.genre}</p>
         </Link>
-        <Favorite />
+        <Favorite onToggleFavorite={onToggleFavorite} isFavorite={isFavorite} />
       </Container>
     </>
   );

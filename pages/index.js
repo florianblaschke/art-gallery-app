@@ -6,11 +6,15 @@ const Container = styled.div`
   flex-flow: column nowrap;
   justify-content: centerM;
 `;
-export default function HomePage({ picture }) {
+export default function HomePage({ picture, onToggleFavorite, isFavorite }) {
   const rdmN = Math.floor(Math.random() * picture.length);
   return (
     <div>
-      <Spotlight picture={picture[rdmN]} />
+      <Spotlight
+        onToggleFavorite={onToggleFavorite}
+        isFavorite={isFavorite}
+        picture={picture[rdmN]}
+      />
     </div>
   );
 }
