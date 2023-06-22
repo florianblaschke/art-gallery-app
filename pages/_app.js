@@ -9,12 +9,21 @@ export default function App({ Component, pageProps }) {
   if (error) return <div>Something bad happened</div>;
   if (!data) return <div>...Loading</div>;
 
+  function toggleFavorite() {
+    console.log("You are my favorite");
+  }
+  const isFavorite = false;
   return (
     <>
       <SWRConfig value={{ fetcher }}>
         <Layout>
           <GlobalStyle />
-          <Component picture={isLoading || error ? [] : data} {...pageProps} />
+          <Component
+            isFavorite={isFavorite}
+            onToggleFavorite={toggleFavorite}
+            picture={isLoading || error ? [] : data}
+            {...pageProps}
+          />
         </Layout>
       </SWRConfig>
     </>

@@ -9,7 +9,7 @@ export const Container = styled.div`
   align-items: center;
   height: 100vh;
 `;
-export default function Spotlight({ picture }) {
+export default function Spotlight({ picture, onToggleFavorite, isFavorite }) {
   return (
     <>
       <Container>
@@ -26,7 +26,7 @@ export default function Spotlight({ picture }) {
           ></Image>
           <p>{picture.genre}</p>
         </Link>
-        <Favorite />
+        <Favorite onToggleFavorite={onToggleFavorite} isFavorite={isFavorite} />
       </Container>
     </>
   );
