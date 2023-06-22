@@ -1,6 +1,6 @@
 import GlobalStyle from "../styles";
+import Layout from "@/components/Layout/Layout";
 import useSWR, { SWRConfig } from "swr";
-
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function App({ Component, pageProps }) {
@@ -12,8 +12,10 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <SWRConfig value={{ fetcher }}>
-        <GlobalStyle />
-        <Component picture={isLoading || error ? [] : data} {...pageProps} />
+        <Layout>
+          <GlobalStyle />
+          <Component picture={isLoading || error ? [] : data} {...pageProps} />
+        </Layout>
       </SWRConfig>
     </>
   );

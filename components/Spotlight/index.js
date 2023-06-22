@@ -1,16 +1,33 @@
 import Image from "next/image";
+import styled from "styled-components";
+import Link from "next/link";
+import Favorite from "../FavoriteButton/FavoriteButton";
 
+export const Container = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  height: 100vh;
+`;
 export default function Spotlight({ picture }) {
   return (
-    <div>
-      <p>{picture.artist}</p>
-      <p>{picture.name}</p>
-      <Image
-        src={picture.imageSource}
-        alt={picture.name}
-        width={300}
-        height={500}
-      ></Image>
-    </div>
+    <>
+      <Container>
+        <Link href={`/artpieces/${picture.slug}`}>
+          <p>{picture.artist}</p>
+          <p>
+            {picture.name} {""} {picture.year}
+          </p>
+          <Image
+            src={picture.imageSource}
+            alt={picture.name}
+            width={300}
+            height={500}
+          ></Image>
+          <p>{picture.genre}</p>
+        </Link>
+        <Favorite />
+      </Container>
+    </>
   );
 }
