@@ -35,6 +35,7 @@ export default function Layout({ children }) {
       <Footer>
         <Link href="/">Spotlight</Link>
         <Link href="/artpieces/">Artpieces</Link>
+        <Link href="/favorites/">Favorites</Link>
       </Footer>
     </>
   );
