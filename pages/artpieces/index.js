@@ -1,10 +1,15 @@
 import Art from "@/components/Artpieces";
 
-export default function List({ picture, onToggleFavorite }) {
+export default function List({ picture, onToggleFavorite, art }) {
   return (
     <ul>
       {picture.map((pic) => (
-        <Art onToggleFavorite={onToggleFavorite} picture={pic} key={pic.slug} />
+        <Art
+          art={art}
+          onToggleFavorite={onToggleFavorite}
+          picture={pic}
+          key={pic.slug}
+        />
       ))}
     </ul>
   );

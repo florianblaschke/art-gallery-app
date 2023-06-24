@@ -23,9 +23,9 @@ export default function App({ Component, pageProps }) {
     });
   }
 
-  const favorites = art.filter((pic) => (pic.isFavorite ? true : false));
-  console.log("art is", art);
-  console.log("favorites are", favorites);
+  // const favorites = art.filter((pic) => (pic.isFavorite ? true : false));
+
+  // console.log("favorites are", favorites);
 
   return (
     <>
@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }) {
         <Layout>
           <GlobalStyle />
           <Component
-            art={favorites}
+            art={art}
             onToggleFavorite={toggleFavorite}
             picture={isLoading || error ? [] : data}
             {...pageProps}

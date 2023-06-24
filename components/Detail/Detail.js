@@ -3,7 +3,7 @@ import Favorite from "../FavoriteButton/FavoriteButton";
 import { Container } from "../Spotlight";
 import { useRouter } from "next/router";
 
-export default function Detail({ picture, onToggleFavorite }) {
+export default function Detail({ art, picture, onToggleFavorite }) {
   const router = useRouter();
   console.log(picture.isFavorite);
   return (
@@ -21,7 +21,11 @@ export default function Detail({ picture, onToggleFavorite }) {
       <p>{picture.genre}</p>
       <Favorite
         id={picture.artist}
-        isFavorite={picture.isFavorite}
+        isFavorite={
+          art.find((ar) => ar.artist === picture.artist)?.isFavorite
+            ? true
+            : false
+        }
         onToggleFavorite={onToggleFavorite}
       />
       <button onClick={() => router.push("/artpieces")}>Back</button>
