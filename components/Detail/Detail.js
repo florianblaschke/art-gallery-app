@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 export default function Detail({ art, picture, onToggleFavorite }) {
   const router = useRouter();
-  console.log(picture.isFavorite);
   return (
     <Container>
       <p>{picture.artist}</p>

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Container } from "../Spotlight";
 
 export default function Art({ art, picture, onToggleFavorite }) {
-  console.log(art);
   return (
     <>
       <Container>

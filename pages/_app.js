@@ -15,17 +15,12 @@ export default function App({ Component, pageProps }) {
     updateArt((draft) => {
       const picture = draft.find((art) => art.artist === artist);
       if (picture) {
-        console.log("picture", picture.artist);
         picture.isFavorite = !picture.isFavorite;
         return;
       }
       draft.push({ artist, isFavorite: true });
     });
   }
-
-  // const favorites = art.filter((pic) => (pic.isFavorite ? true : false));
-
-  // console.log("favorites are", favorites);
 
   return (
     <>
