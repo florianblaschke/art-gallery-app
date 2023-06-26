@@ -3,6 +3,19 @@ import Favorite from "../FavoriteButton/FavoriteButton";
 import { Container } from "../Spotlight";
 import { useRouter } from "next/router";
 import Entry from "../Entries/List";
+import styled from "styled-components";
+
+const ColorBox = styled.div.attrs((props) => ({
+  $color: props.$color || "red",
+}))`
+  width: 20px;
+  height: 20px;
+  background-color: ${(props) => props.$color};
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+`;
 
 export default function Detail({
   art,
@@ -32,6 +45,11 @@ export default function Detail({
         height={500}
       ></Image>
       <p>{picture.genre}</p>
+      <Wrapper>
+        {picture.colors.map((color) => (
+          <ColorBox $color={color} key={color}></ColorBox>
+        ))}
+      </Wrapper>
       <Favorite
         id={picture.artist}
         isFavorite={
