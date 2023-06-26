@@ -12,14 +12,12 @@ export default function Detail({
   thoughts,
 }) {
   const router = useRouter();
-  console.log("Beginning", thoughts);
 
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     handleThought(picture.artist, data);
-    console.log("What is", thoughts);
   }
   return (
     <Container>
@@ -49,10 +47,6 @@ export default function Detail({
         <textarea maxLength={150} id="text" name="text"></textarea>
         <button type="submit">Save thoughts</button>
       </form>
-      {console.log(
-        "thought found",
-        thoughts.find((th) => th.artist === picture.artist)
-      )}
       <Entry entries={thoughts.find((th) => th.artist === picture.artist)} />
     </Container>
   );
