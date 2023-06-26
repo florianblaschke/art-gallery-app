@@ -1,3 +1,7 @@
-export default function Favorite({ isFavorite, onToggleFavorite }) {
-  return <button onClick={onToggleFavorite}>Mark favorite</button>;
+export default function Favorite({ id, isFavorite, onToggleFavorite }) {
+  return (
+    <button onClick={() => onToggleFavorite(id)}>
+      {isFavorite ? "Unmark Favorite" : "MarkFavorite"}
+    </button>
+  );
 }
