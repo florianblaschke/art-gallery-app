@@ -2,9 +2,25 @@ import Image from "next/image";
 import Favorite from "../FavoriteButton/FavoriteButton";
 import { Container } from "../Spotlight";
 import { useRouter } from "next/router";
+import Entry from "../Entries/List";
 
-export default function Detail({ art, picture, onToggleFavorite }) {
+export default function Detail({
+  art,
+  picture,
+  onToggleFavorite,
+  handleThought,
+  thoughts,
+}) {
   const router = useRouter();
+  console.log("Beginning", thoughts);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    handleThought(picture.artist, data);
+    console.log("What is", thoughts);
+  }
   return (
     <Container>
       <p>{picture.artist}</p>
@@ -28,6 +44,16 @@ export default function Detail({ art, picture, onToggleFavorite }) {
         onToggleFavorite={onToggleFavorite}
       />
       <button onClick={() => router.push("/artpieces")}>Back</button>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="text">Art or Trash?</label>
+        <textarea maxLength={150} id="text" name="text"></textarea>
+        <button type="submit">Save thoughts</button>
+      </form>
+      {console.log(
+        "thought found",
+        thoughts.find((th) => th.artist === picture.artist)
+      )}
+      <Entry entries={thoughts.find((th) => th.artist === picture.artist)} />
     </Container>
   );
 }

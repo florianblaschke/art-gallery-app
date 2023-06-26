@@ -17,9 +17,3 @@ export default function Favorites({ art, onToggleFavorite, picture }) {
     </ul>
   );
 }
-
-/* const favorites = pieces.filter((piece) =>
-  artPiecesInfo.find(
-    (artPiece) => artPiece.slug === piece.slug && artPiece.isFavorite
-  )
-); */
