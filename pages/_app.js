@@ -2,13 +2,18 @@ import GlobalStyle from "../styles";
 import Layout from "@/components/Layout/Layout";
 import useSWR, { SWRConfig } from "swr";
 import { useImmer } from "use-immer";
+import { useImmerLocalStorageState } from "@/resources/lib/hook/useImmerLocalStorageState";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function App({ Component, pageProps }) {
   const url = "https://example-apis.vercel.app/api/art";
   const { data, isLoading, error } = useSWR(url, fetcher);
-  const [art, updateArt] = useImmer([]);
-  const [thoughts, updateThoughts] = useImmer([]);
+  const [art, updateArt] = useImmerLocalStorageState("art", {
+    defaultValue: [],
+  });
+  const [thoughts, updateThoughts] = useImmerLocalStorageState("thoughts", {
+    defaultValue: [],
+  });
   if (error) return <div>Something bad happened</div>;
   if (!data) return <div>...Loading</div>;
 
