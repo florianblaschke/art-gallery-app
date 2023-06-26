@@ -8,6 +8,7 @@ export default function App({ Component, pageProps }) {
   const url = "https://example-apis.vercel.app/api/art";
   const { data, isLoading, error } = useSWR(url, fetcher);
   const [art, updateArt] = useImmer([]);
+  const [thoughts, updateThoughts] = useImmer([]);
   if (error) return <div>Something bad happened</div>;
   if (!data) return <div>...Loading</div>;
 
@@ -22,12 +23,28 @@ export default function App({ Component, pageProps }) {
     });
   }
 
+  function handleThought(artist, data) {
+    const currentDate = new Date().toLocaleDateString("en-us", {
+      dateStyle: "medium",
+    });
+    updateThoughts((draft) => {
+      const current = draft.find((th) => th.artist === artist);
+      if (current) {
+        current.text.push({ ...data, date: currentDate });
+        return;
+      }
+      draft.push({ artist, text: [{ ...data, date: currentDate }] });
+    });
+  }
+
   return (
     <>
       <SWRConfig value={{ fetcher }}>
         <Layout>
           <GlobalStyle />
           <Component
+            thoughts={thoughts}
+            handleThought={handleThought}
             art={art}
             onToggleFavorite={toggleFavorite}
             picture={isLoading || error ? [] : data}
